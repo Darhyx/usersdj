@@ -1,4 +1,5 @@
 from .base import *
+import psycopg2
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -11,10 +12,13 @@ ALLOWED_HOSTS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':get_secret('DB_NAME'),
-        'USER':get_secret('USER'),
-        'PASSWORD': get_secret('PASSWORD'),
-        'HOST': 'localhost',
+        'NAME': 'dbuser',
+        "USER": "dbadmin",
+        "PASSWORD": "DB2022",
+        #'NAME':get_secret('DB_NAME'),
+        #'USER':get_secret('USER'),
+        #'PASSWORD': get_secret('PASSWORD'),
+        'HOST': '127.0.0.1',
         'PORT': '5432',
 
     }
@@ -28,3 +32,10 @@ STATICFILES_DIRS =[BASE_DIR.parent /'static']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR.parent / 'media'
+
+#EMAIL SETTING
+EMAIL_USE_TLS= True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = get_secret('EMAIL')
+EMAIL_HOST_PASSWORD = get_secret('PASS_EMAIL')
+EMIAL_PORT= 587
